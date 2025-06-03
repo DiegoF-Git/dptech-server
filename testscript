@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir -p /home/ubuntu/backup
+
+now=$(date +"%d_%m_%y")
+
+zip -r /home/ubuntu/backup/$now.zip /home/ubuntu/Documents
