@@ -93,7 +93,7 @@ sudo certbot --apache
 curl -Iv https://dptech.online
 ```
 
-### 4. Website Deployment
+### 4. Website Deployment (Version 1)
 
 * Removed default index:
 
@@ -101,20 +101,31 @@ curl -Iv https://dptech.online
 sudo rm /var/www/html/index.html
 ```
 
-* Uploaded custom content via SCP:
+* Uploaded initial website files:
+
+  * `index.html`: homepage with service summary
+  * `services.html`: expanded descriptions
+  * `about.html`: team background
+  * `contact.html`: basic form
+  * `style.css`: base layout and colors
+* Used SCP to upload files and adjusted permissions:
 
 ```bash
-scp -i diegokey.pem index.html ubuntu@3.107.180.255:/var/www/html/
-```
-
-* Adjusted permissions:
-
-```bash
-sudo chown www-data:www-data /var/www/html/index.html
+scp -i diegokey.pem *.html *.css ubuntu@3.107.180.255:/var/www/html/
+sudo chown -R www-data:www-data /var/www/html/*
 sudo systemctl reload apache2
 ```
 
-### 5. Backup Script
+### 5. Website Deployment (Version 2 - Final)
+
+* Overhauled all HTML content with enriched, responsive layouts
+* `index.html`: revised with clearer service cards, better structure, visual improvements
+* `services.html`: enhanced clarity, icons, bullet structure for services
+* `about.html`: includes Project Proposal and Licence Rationale from Assignment 1
+* `contact.html`: new structure with icons, styled form, better UX
+* `style.css`: expanded with typography, colors, mobile responsiveness
+
+### 6. Backup Script
 
 * Created folder structure and files:
 
@@ -122,7 +133,6 @@ sudo systemctl reload apache2
 mkdir -p /home/ubuntu/Documents
 mkdir -p /home/ubuntu/backup
 touch /home/ubuntu/Documents/file1.txt
-touch /home/ubuntu/Documents/file2.txt
 ```
 
 * Created script `/usr/bin/testscript`:
@@ -144,7 +154,7 @@ chmod +x /usr/bin/testscript
 
 * Tested manually: `/usr/bin/testscript`
 
-### 6. Cron Job Setup
+### 7. Cron Job Setup
 
 * Edited crontab:
 
@@ -162,14 +172,16 @@ sudo nano /etc/crontab
 
 ---
 
-## 📑 Files in This Repo
+## 📁 Website Files
 
 ```
+Version 2 (Final)
 .
-├── backup_script.sh         # Bash script for automated backups
-├── Cloud_Server_Project.docx  # Project documentation
-├── LICENSE                  # MIT License
-├── README.md                # This overview
+├── index.html         # Homepage with service summary, responsive layout
+├── services.html      # Expanded IT services with icons and details
+├── about.html         # Background, mission, Project Proposal & Licence Rationale
+├── contact.html       # Enhanced contact form with better UI
+├── style.css          # Fully customized stylesheet with media queries
 ```
 
 ---
@@ -193,9 +205,10 @@ Repo URL: [https://github.com/DiegoF-Git/dptech-server](https://github.com/Diego
 Includes:
 
 * Source code for automation
-* HTML/CSS assets
-* Deployment instructions
-* TLS verification logs
+* HTML/CSS website files (v1 and v2)
+* Deployment instructions in README
+* TLS and DNS validation logs
+* Version control for all site iterations
 
 ---
 
@@ -206,6 +219,32 @@ Includes:
 **Unit:** ICT171 - Server Environments and Architectures
 
 ---
+
+## ✅ Final Testing Checklist
+
+* [x] DNS resolves and A records confirmed
+* [x] Apache Web Server fully operational
+* [x] HTTPS enabled with valid certificate
+* [x] Website content deployed successfully
+* [x] Backup script tested manually and via cron
+* [x] Files timestamped correctly in zip format
+* [x] Server secure with correct ports
+* [x] Deployment simulates a real-world business scenario
+
+---
+
+## 🔮 Future Improvements
+
+* Add CloudFront for CDN
+* Backup to AWS S3
+* Automate snapshot scheduling
+* Monitor with AWS CloudWatch & Budgets
+
+---
+
+
+
+
 
 ## ✅ Final Testing Checklist
 
