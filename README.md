@@ -18,15 +18,15 @@ The purpose of this project was to simulate a real-world deployment using Amazon
 
 ---
 
-## 🏛️ Infrastructure Details
+## 🏩 Infrastructure Details
 
 * **Cloud Provider:** Amazon Web Services (AWS) - EC2 (Elastic Compute Cloud)
 * **Instance:** Ubuntu 24.04 LTS, t3.micro, gp3 30 GB SSD (Asia Pacific - Sydney)
 * **Security Group:** TCP Ports 22, 80, 443 opened
-* **Elastic IP:** 3.107.180.255
-* **Domain:** Registered via Namecheap - `dptech.online`
+* **Elastic IP:** 3.107.180.255 (original) and new static IP for demo server
+* **Domain:** Registered via Namecheap - `dptech.online` and demo domain `dptech2.online`
 * **DNS Records:** A records pointing to the EC2 IP
-* **TLS Certificate:** Let’s Encrypt via Certbot
+* **TLS Certificate:** Let’s Encrypt via Certbot (Snap-based installation)
 * **Web Server:** Apache2
 
 ---
@@ -36,13 +36,13 @@ The purpose of this project was to simulate a real-world deployment using Amazon
 ### 1. Amazon EC2 Setup
 
 * Logged into AWS Console and launched Ubuntu 24.04 LTS on t3.micro
-* Created key pair `diegokey.pem`
+* Created key pair `diegokey.pem` (reused for both original and demo instances)
 * Configured security group to open ports 22, 80, and 443
-* Allocated and associated an Elastic IP
-* Used SSH from Windows Terminal:
+* Allocated and associated Elastic IP to demo server
+* Used MobaXterm to SSH into the server:
 
 ```bash
-ssh -i diegokey.pem ubuntu@3.107.180.255
+ssh -i D:\amazon\diegokey.pem ubuntu@<Your-Elastic-IP>
 ```
 
 * Installed Apache:
@@ -58,21 +58,21 @@ sudo systemctl start apache2
 
 ### 2. Domain Registration & DNS
 
-* Purchased `dptech.online` from Namecheap
-* Configured A records (@ and www) to point to Elastic IP
-* Verified DNS with:
+* Purchased `dptech.online` and `dptech2.online` from Namecheap
+* Configured A records to point to EC2 Elastic IP
+* Verified DNS:
 
 ```bash
-dig dptech.online
-nslookup dptech.online
-ping dptech.online
-wget http://dptech.online
+ping dptech2.online
+nslookup dptech2.online
+dig dptech2.online
+wget http://dptech2.online
 ```
 
-### 3. TLS Certificate with Certbot
+### 3. TLS Certificate with Certbot (Snap-based)
 
-* Opened port 443 in AWS
-* Installed Snap and Certbot:
+* Opened port 443 in AWS Security Group
+* Installed Certbot via Snap:
 
 ```bash
 sudo snap install core
@@ -87,13 +87,13 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot --apache
 ```
 
-* Enabled HTTP to HTTPS redirect and confirmed via browser and:
+* Verified HTTPS and redirect:
 
 ```bash
-curl -Iv https://dptech.online
+curl -Iv https://dptech2.online
 ```
 
-### 4. Website Deployment (Version 1)
+### 4. Website Deployment
 
 * Removed default index:
 
@@ -101,87 +101,40 @@ curl -Iv https://dptech.online
 sudo rm /var/www/html/index.html
 ```
 
-* Uploaded initial website files:
-
-  * `index.html`: homepage with service summary
-  * `services.html`: expanded descriptions
-  * `about.html`: team background
-  * `contact.html`: basic form
-  * `style.css`: base layout and colors
-* Used SCP to upload files and adjusted permissions:
+* Uploaded content with MobaXterm:
 
 ```bash
-scp -i diegokey.pem *.html *.css ubuntu@3.107.180.255:/var/www/html/
+scp -i diegokey.pem *.html *.css ubuntu@<Elastic-IP>:/var/www/html/
+```
+
+* Adjusted permissions:
+
+```bash
 sudo chown -R www-data:www-data /var/www/html/*
 sudo systemctl reload apache2
 ```
 
-### 5. Website Deployment (Version 2 - Final)
+* Site files deployed:
 
-* Overhauled all HTML content with enriched, responsive layouts
-* `index.html`: revised with clearer service cards, better structure, visual improvements
-* `services.html`: enhanced clarity, icons, bullet structure for services
-* `about.html`: includes Project Proposal and Licence Rationale from Assignment 1
-* `contact.html`: new structure with icons, styled form, better UX
-* `style.css`: expanded with typography, colors, mobile responsiveness
+  * `index.html`, `services.html`, `about.html`, `contact.html`, `style.css`
 
-### 6. Backup Script
+### 5. Backup Script
 
-* Created folder structure and files:
-
-```bash
-mkdir -p /home/ubuntu/Documents
-mkdir -p /home/ubuntu/backup
-touch /home/ubuntu/Documents/file1.txt
-```
-
-* Created script `/usr/bin/testscript`:
-
-```bash
-#!/bin/bash
-now=$(date +"%d_%m_%y")
-mkdir -p /home/ubuntu/backup
-cp -R /home/ubuntu/Documents/* /home/ubuntu/backup/
-zip -r /home/ubuntu/backup/$now.zip /home/ubuntu/backup/*
-scp -i /home/ubuntu/diegokey.pem /home/ubuntu/backup/$now.zip ubuntu@3.107.180.255:/home/ubuntu/
-```
-
-* Gave permissions:
-
-```bash
-chmod +x /usr/bin/testscript
-```
-
-* Tested manually: `/usr/bin/testscript`
-
-### 7. Cron Job Setup
-
-* Edited crontab:
-
-```bash
-sudo nano /etc/crontab
-```
-
-* Added line:
-
-```bash
-0 * * * * ubuntu /usr/bin/testscript
-```
-
-* Confirmed automation in logs and verified zip files
+* Created script `/usr/bin/testscript` to zip backup files
+* Used cron to run hourly
+* Manually tested script
 
 ---
 
-## 📁 Website Files
+## 🌐 Website Files
 
 ```
-Version 2 (Final)
 .
-├── index.html         # Homepage with service summary, responsive layout
-├── services.html      # Expanded IT services with icons and details
-├── about.html         # Background, mission, Project Proposal & Licence Rationale
-├── contact.html       # Enhanced contact form with better UI
-├── style.css          # Fully customized stylesheet with media queries
+├── index.html         # Homepage
+├── services.html      # IT service descriptions
+├── about.html         # Company info, Project Proposal & Licence Rationale
+├── contact.html       # Contact form and info
+└── style.css          # Main stylesheet
 ```
 
 ---
@@ -194,8 +147,6 @@ Version 2 (Final)
 | **AWS EC2 (IaaS)** | \$1,344  | \$1,385 | \$1,426 | \$4,155  |
 | **WP.com (SaaS)**  | \$862    | \$888   | \$915   | \$2,665  |
 
-AWS EC2 was selected for its flexibility, cost savings, root access, and alignment with industry standards.
-
 ---
 
 ## 🚀 GitHub Deployment
@@ -204,11 +155,18 @@ Repo URL: [https://github.com/DiegoF-Git/dptech-server](https://github.com/Diego
 
 Includes:
 
-* Source code for automation
 * HTML/CSS website files (v1 and v2)
-* Deployment instructions in README
-* TLS and DNS validation logs
-* Version control for all site iterations
+* Updated structure (added demo domain and Elastic IP)
+* Documentation built iteratively
+* TLS and DNS verified on both domains
+
+---
+
+## 🎮 Video Recording Notes
+
+* Separate EC2 instance created with Elastic IP for illustration
+* OBS Studio used to record entire process
+* Justification provided for having two environments (production & demo)
 
 ---
 
@@ -229,7 +187,8 @@ Includes:
 * [x] Backup script tested manually and via cron
 * [x] Files timestamped correctly in zip format
 * [x] Server secure with correct ports
-* [x] Deployment simulates a real-world business scenario
+* [x] Elastic IP used in demo instance
+* [x] Documentation and GitHub iteratively updated
 
 ---
 
