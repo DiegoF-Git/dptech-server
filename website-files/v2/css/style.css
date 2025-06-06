@@ -1,0 +1,962 @@
+/* --- General Styles and Resets --- */
+:root {
+    --primary-color: #007bff; /* Tech blue */
+    --secondary-color: #6c757d; /* Secondary gray */
+    --light-color: #f8f9fa; /* Light gray / White */
+    --dark-color: #343a40; /* Dark gray */
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --text-color: #212529; /* Main text color */
+    --heading-font: 'Roboto', sans-serif;
+    --body-font: 'Open Sans', sans-serif;
+    --container-max-width: 1140px;
+    --header-height: 70px; /* Header height for sticky */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+    padding-top: var(--header-height); /* For sticky header */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue */
+    text-decoration: underline;
+}
+
+img { /* Style for actual content images, not icon placeholders */
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- Utilities --- */
+.section-padding {
+    padding: 60px 0;
+}
+
+.bg-light {
+    background-color: var(--light-color);
+}
+
+.bg-primary {
+     background-color: var(--primary-color);
+}
+
+.text-light {
+    color: #fff !important; /* Ensure text is light */
+}
+
+.text-light h1,
+.text-light h2,
+.text-light h3,
+.text-light p {
+    color: #fff;
+}
+.text-light a {
+    color: var(--light-color);
+}
+.text-light a:hover {
+    color: #eee;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 10px auto 0;
+}
+
+/* --- Header --- */
+.main-header {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%; /* Ensure it takes full width within container */
+}
+
+.logo-placeholder {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dark-color);
+    text-decoration: none;
+}
+.logo-placeholder:hover {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.main-nav ul {
+    display: flex;
+}
+
+.main-nav li {
+    margin-left: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--primary-color);
+}
+
+.main-nav a::after { /* Underline animation for active/hover nav links */
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+    width: 100%;
+}
+
+.header-contact-info span {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+.header-contact-info a {
+    color: var(--dark-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+.header-contact-info a:hover {
+    color: var(--primary-color);
+}
+
+.mobile-menu-toggle {
+    display: none; /* Hidden by default, shown in media query */
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--dark-color);
+}
+
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding-top: 40px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.main-footer h4 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--secondary-color);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.main-footer p {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    display: flex; /* Align icon and text */
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+}
+.footer-contact a {
+     color: #ccc;
+}
+.footer-contact a:hover {
+    color: #fff;
+}
+.footer-icon { /* Style for icons in footer contact */
+    color: var(--secondary-color);
+    font-size: 1.1em;
+    width: 20px; /* Fixed width for alignment */
+    text-align: center;
+}
+
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin-right: 15px;
+    color: var(--light-color); /* Icon color */
+    font-size: 1.5rem; /* Icon size */
+    opacity: 0.8;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+    opacity: 1;
+    color: var(--primary-color); /* Color on hover */
+}
+
+.footer-bottom {
+    background-color: #212529; /* Slightly darker than main footer bg */
+    padding: 15px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+.footer-bottom p {
+    margin: 0;
+}
+
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    text-decoration: none; /* Ensure underline from <a> hover doesn't persist */
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker primary */
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Darker secondary */
+     color: #fff;
+}
+
+.btn-light {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    border: 1px solid #ddd; /* Added subtle border for light buttons */
+}
+.btn-light:hover {
+    background-color: #e2e6ea; /* Slightly darker light */
+    color: var(--dark-color);
+}
+
+.cta-button { /* For more prominent Call-to-Action buttons */
+    font-size: 1.1rem;
+    padding: 15px 35px;
+}
+
+
+/* --- Hero Section (index.html) --- */
+.hero-section {
+    position: relative;
+    height: calc(80vh - var(--header-height));
+    min-height: 450px; /* Minimum height for smaller viewports */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden; /* Ensure background doesn't bleed */
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333; /* Fallback color */
+    /* Ensure your image path is correct. Assumes an 'images' folder relative to CSS or root. */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-placeholder.jpg');
+    background-size: cover;
+    background-position: center center;
+    z-index: -1; /* Behind hero content */
+}
+
+.hero-content {
+    max-width: 700px;
+    z-index: 1; /* Above background */
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #eee; /* Slightly off-white for better readability on dark bg */
+}
+
+/* --- Specific Sections (Home) --- */
+.featured-services .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.service-item {
+    text-align: center;
+    padding: 25px 20px; /* Increased padding slightly */
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.service-icon { /* For Font Awesome icons in featured services */
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.why-choose-us .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 15px; /* Added some padding */
+}
+
+.feature-icon { /* For Font Awesome icons in why-choose-us */
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.testimonials-snippet .testimonial-item {
+    max-width: 700px;
+    margin: 0 auto 20px auto; /* Added margin for multiple testimonials */
+    text-align: center;
+    font-style: italic;
+}
+
+.testimonial-item blockquote p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.testimonial-item cite {
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-style: normal;
+}
+
+.secondary-cta { /* Call to Action section styling */
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.secondary-cta h2 {
+     color: #fff;
+     margin-bottom: 1rem;
+}
+.secondary-cta p {
+    color: #eee;
+    margin-bottom: 1.5rem;
+    max-width: 600px; /* Limit width for better readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* --- Services Page --- */
+.page-title-section {
+    padding: 40px 0;
+    text-align: center;
+}
+.page-title-section h1 {
+    margin-bottom: 0.5rem;
+}
+
+.services-detailed .category-title {
+    margin-top: 40px;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+    display: inline-block; /* Keeps underline only under text */
+}
+.services-detailed .category-title:first-of-type {
+     margin-top: 0; /* No top margin for the first category title */
+}
+/* Icon next to category title (as added in services.html) */
+.services-detailed .category-icon {
+    margin-right: 10px;
+    font-size: 1.6rem; /* Adjust as needed */
+}
+
+.service-detailed-item {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #fff;
+    align-items: flex-start;
+}
+
+.service-icon-large { /* For Font Awesome icons in detailed service items */
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-top: 5px;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    width: 60px;
+    text-align: center;
+}
+
+.service-content h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.service-content p:last-of-type {
+    margin-bottom: 0.5rem;
+}
+.service-content strong { /* For pricing labels etc. */
+    color: var(--dark-color);
+}
+
+/* --- About Us Page --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Text column wider */
+    gap: 40px;
+    align-items: center;
+}
+
+.about-text h2 {
+    color: var(--primary-color);
+    margin-top: 20px;
+}
+.about-text h2:first-of-type {
+    margin-top: 0;
+}
+
+.about-image img {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.team-member {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.team-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    object-fit: cover; /* Ensures image covers space without distortion */
+    border: 3px solid var(--primary-color);
+}
+/* Optional: Style for Font Awesome user icon if no photo */
+.team-member .fa-user-circle { /* Example if using FA icon as placeholder */
+    font-size: 8rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.team-title {
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+.team-member p:last-of-type { /* Bio text */
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+
+/* --- Contact Page --- */
+.contact-grid {
+     display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Form column slightly wider */
+    gap: 40px;
+}
+
+.contact-form-container h2,
+.contact-info-container h2 {
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group textarea {
+    resize: vertical; /* Allow vertical resize only */
+    min-height: 120px; /* Minimum height for textarea */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Style for form status messages */
+#form-status {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    display: none; /* Hidden by default, shown by JS */
+}
+#form-status.success {
+    background-color: var(--success-color);
+    color: white;
+    display: block;
+}
+#form-status.error {
+    background-color: var(--danger-color);
+     color: white;
+     display: block;
+}
+
+.contact-details .contact-item {
+    display: flex;
+    align-items: flex-start; /* Align icon to the top of the text block */
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.contact-icon { /* For Font Awesome icons in contact details */
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-top: 3px;
+    width: 25px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.contact-item strong { /* Labels like Phone:, Email: */
+    display: block;
+    margin-bottom: 3px;
+    color: var(--dark-color);
+}
+
+.map-container {
+    margin-top: 30px;
+}
+.map-container h3 {
+    margin-bottom: 15px;
+}
+.map-placeholder { /* If not using an embedded map */
+     border: 1px solid #ccc;
+     min-height: 300px;
+     background-color: #f0f0f0;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     text-align: center;
+     font-style: italic;
+     color: #666;
+     border-radius: 5px; /* Added border-radius */
+}
+.map-placeholder img { /* If using placeholder img from via.placeholder.com */
+    border: none; /* Remove double border if img has one */
+    border-radius: 4px;
+}
+
+.alternative-cta { /* For "Need Urgent Help?" box */
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--light-color);
+    border: 1px solid #eee;
+    border-radius: 5px;
+    text-align: center;
+}
+.alternative-cta h3 {
+    margin-bottom: 10px;
+}
+
+/* --- Project Specific Sections (Added to About Page) --- */
+.project-section {
+    background-color: #f8f9fa; /* Consistent with .bg-light */
+    padding: 25px;
+    margin-top: 40px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.project-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.project-section p,
+.project-section ol {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    /* text-align: justify; */ /* Justify can sometimes make readability harder */
+}
+
+.project-section ol {
+    padding-left: 30px; /* Standard indentation for ordered lists */
+}
+.project-section li {
+    margin-bottom: 0.5rem;
+}
+
+.project-section strong {
+     font-weight: 600; /* Ensure it's not overridden by browser defaults */
+     color: var(--dark-color);
+}
+
+.project-section em {
+    font-style: italic;
+    color: var(--secondary-color); /* Use a theme color */
+}
+
+.project-section a {
+    font-weight: 600; /* Make links in this section stand out a bit */
+}
+
+
+/* --- Responsive Design --- */
+
+/* Tablets and Small Desktops */
+@media (max-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+
+    .about-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+        text-align: center;
+    }
+    .about-image {
+        order: -1; /* Image on top */
+        margin-bottom: 30px;
+        margin-left: auto; /* Center image if it's not full width */
+        margin-right: auto;
+    }
+    .contact-grid {
+         grid-template-columns: 1fr; /* Single column layout */
+    }
+    .contact-info-container {
+        margin-top: 40px; /* Space between form and info on mobile */
+    }
+}
+
+/* Large Mobiles and Small Tablets */
+@media (max-width: 768px) {
+     body { /* Adjust header height for smaller screens */
+        padding-top: calc(var(--header-height) - 10px);
+    }
+     .main-header {
+         height: calc(var(--header-height) - 10px);
+    }
+
+    h1 { font-size: 2rem; }
+    .hero-section {
+        height: auto; /* Adjust height for content */
+        min-height: 400px;
+        padding: 60px 0; /* Reduced padding */
+    }
+    .hero-content h1 { font-size: 2.5rem; }
+
+    .main-nav { /* Prepare for mobile menu */
+        position: relative;
+    }
+
+    .main-nav .nav-links {
+        /* JS toggles .active class to show/hide */
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px); /* Position below header */
+        right: -15px; /* Align to the right of the container padding */
+        background-color: #fff;
+        flex-direction: column;
+        width: 250px;
+        border: 1px solid #eee;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 10px 0;
+        z-index: 1100; /* Ensure it's above other content */
+    }
+     .main-nav .nav-links.active { /* Class added by JS */
+        display: flex;
+    }
+
+    .main-nav li {
+        margin: 0;
+        width: 100%;
+    }
+    .main-nav a {
+        display: block;
+        padding: 12px 20px; /* Increased padding for touch targets */
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0; /* Lighter border */
+    }
+     .main-nav li:last-child a {
+        border-bottom: none;
+    }
+    .main-nav a::after { /* Remove underline animation for mobile nav items */
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: block; /* Show hamburger icon */
+    }
+
+    .header-contact-info {
+        display: none; /* Hide header contact info on small screens */
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr; /* Stack footer widgets */
+        text-align: center;
+    }
+    .footer-content > div { /* Each footer widget */
+        margin-bottom: 20px;
+    }
+     .main-footer h4 { /* Footer headings centered */
+        display: block;
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 10px;
+    }
+     .social-icons { /* Center social icons */
+        justify-content: center;
+        display: flex;
+    }
+     .footer-contact p {
+         justify-content: center; /* Center icon and text in footer on mobile */
+     }
+    .service-detailed-item { /* Stack service item content on mobile */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .service-icon-large {
+        margin-bottom: 15px;
+        margin-top: 0;
+        width: auto; /* Reset width */
+    }
+}
+
+/* Small Mobiles */
+@media (max-width: 576px) {
+     h1 { font-size: 1.8rem; }
+     h2 { font-size: 1.6rem; }
+     .hero-content h1 { font-size: 2rem; }
+     .hero-content p { font-size: 1rem; }
+     .cta-button { padding: 12px 25px; font-size: 1rem; }
+
+     .section-padding { padding: 40px 0; }
+     .section-title { font-size: 1.9rem; margin-bottom: 30px;}
+
+
+     .featured-services .services-grid,
+     .why-choose-us .features-grid,
+     .team-grid {
+        grid-template-columns: 1fr; /* Single column for all grids */
+     }
+
+    /* Responsive adjustments for Project Sections */
+    .project-section {
+         padding: 20px 15px; /* Adjust padding */
+         margin-top: 30px;
+    }
+    .project-section h2 {
+        font-size: 1.5rem;
+    }
+    .project-section p,
+    .project-section ol {
+        font-size: 0.9rem; /* Slightly smaller font for readability on small screens */
+    }
+}
+/* --- Custom Button for Secondary CTA on Dark Background --- */
+.btn-cta-contrast {
+    background-color: var(--secondary-color); /* Gris oscuro/medio */
+    color: var(--light-color); /* Texto claro */
+    border: 1px solid var(--dark-color); /* Un borde sutil más oscuro */
+}
+
+.btn-cta-contrast:hover {
+    background-color: #5a6268; /* Un gris un poco más oscuro al pasar el ratón */
+    color: #fff; /* Texto blanco */
+    border-color: #343a40;
+}

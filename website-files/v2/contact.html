@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact DP IT Technology in Perth for IT services, quotes, or tech support. Reach us via form, phone, or email. View our location and business hours.">
+    <title>Contact Us - DP IT Technology Perth</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/572ce9c568.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header class="main-header sticky-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html" class="logo-placeholder">DP IT Technology</a>
+            </div>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-contact-info">
+                <span>Call Us: <a href="tel:+61892345678">+61 8 9234 5678</a></span> </div>
+        </div>
+    </header>
+
+    <main>
+         <section class="page-title-section bg-light">
+            <div class="container">
+                <h1>Get in Touch With Us</h1>
+                <p>We're ready to help. Send us a message, give us a call, or visit us.</p>
+            </div>
+        </section>
+
+        <section class="contact-section section-padding">
+            <div class="container contact-grid">
+                <div class="contact-form-container">
+                    <h2>Send Us a Message</h2>
+                    <form id="contact-form" action="#contact-form-submission-handler" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                         <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                         <div class="form-group">
+                            <label for="phone">Phone (Optional):</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                          <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <select id="subject" name="subject">
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Service Request">Service Request</option>
+                                <option value="Quote Request">Quote Request</option>
+                                <option value="Hardware Repair Inquiry">Hardware Repair Inquiry</option>
+                                <option value="Software Support Inquiry">Software Support Inquiry</option>
+                                <option value="Data Recovery Inquiry">Data Recovery Inquiry</option>
+                                <option value="Networking Inquiry">Networking Inquiry</option>
+                                <option value="IT Consulting Inquiry">IT Consulting Inquiry</option>
+                                <option value="Technical Support">Technical Support</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                         <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                         <div id="form-status" role="alert"></div>
+                    </form>
+                </div>
+
+                <div class="contact-info-container">
+                     <h2>Contact Information</h2>
+                      <div class="contact-details">
+                          <div class="contact-item">
+                              <i class="fas fa-phone contact-icon"></i>
+                              <div><strong>Phone:</strong><br><a href="tel:+61892345678">+61 8 9234 5678</a></div> </div>
+                           <div class="contact-item">
+                               <i class="fas fa-envelope contact-icon"></i>
+                               <div><strong>Email:</strong><br><a href="mailto:support@dpitechnology.com.au">support@dpitechnology.com.au</a></div> </div>
+                           <div class="contact-item">
+                               <i class="fas fa-map-marker-alt contact-icon"></i>
+                              <div><strong>Address:</strong><br>123 Tech Street<br>Perth, WA 6000, Australia</div> </div>
+                          <div class="contact-item">
+                               <i class="fas fa-clock contact-icon"></i>
+                               <div><strong>Business Hours:</strong><br>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</div> </div>
+                     </div>
+                     <div class="map-container">
+                         <h3>Our Location Near Murdoch University</h3>
+						 <p class="map-note" style="font-size: 0.9em; color: #666; margin-top: 10px; text-align: center;">                         
+							Our main office is located in Hamersley. We serve clients across Perth, and Murdoch University is shown as a familiar reference point in the area.
+						 </p>
+                     </div>
+                     <div class="alternative-cta">
+                         <h3>Need Urgent Help?</h3>
+                         <p>Call us directly for a faster response during our business hours for immediate assistance.</p>
+                          <a href="tel:+61892345678" class="btn btn-secondary">+61 8 9234 5678</a>
+                     </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+         <div class="container footer-content">
+            <div class="footer-about">
+                 <h4>DP IT Technology</h4>
+                  <p>Your reliable partner for innovative and effective IT solutions in Perth.</p> </div>
+            <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="#privacy-policy-placeholder">Privacy Policy</a></li><li><a href="#terms-of-service-placeholder">Terms of Service</a></li></ul></div>
+            <div class="footer-contact"><h4>Contact</h4>
+                <p><i class="fas fa-envelope footer-icon"></i> Email: <a href="mailto:support@dpitechnology.com.au">support@dpitechnology.com.au</a></p>
+                <p><i class="fas fa-phone footer-icon"></i> Phone: <a href="tel:+61892345678">+61 8 9234 5678</a></p>
+                <p><i class="fas fa-map-marker-alt footer-icon"></i> 123 Tech Street, Perth, WA 6000, Australia</p>
+                <div class="social-icons">
+                    <a href="https://facebook.com/DPITTechnology" aria-label="Facebook" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/DPITTechAU" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com/company/dp-it-technology" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+         <div class="footer-bottom">
+            <div class="container">
+                 <p style="font-size: 0.85em; color: #ccc; margin-bottom: 5px;">Student ID: 35549445 | Public IP: 3.107.180.255</p>
+                 <p>© <span id="current-year"></span> DP IT Technology. All rights reserved.</p>
+                 <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+            </div>
+        </div>
+    </footer>
+
+    </body>
+</html>

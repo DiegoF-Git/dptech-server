@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact DP IT Technology to request services, ask for a quote, or resolve your tech questions. Contact form, phone, email, and location.">
+    <title>Contact - DP IT Technology</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/572ce9c568.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header class="main-header sticky-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html" class="logo-placeholder">DP IT Technology</a>
+            </div>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-contact-info">
+                <span>Call Us: <a href="tel:+1234567890">[Your Phone Number]</a></span> </div>
+        </div>
+    </header>
+
+    <main>
+         <section class="page-title-section bg-light">
+            <div class="container">
+                <h1>Get in Touch With Us</h1>
+                <p>We're ready to help. Send us a message or give us a call.</p>
+            </div>
+        </section>
+
+        <section class="contact-section section-padding">
+            <div class="container contact-grid">
+                <div class="contact-form-container">
+                    <h2>Send Us a Message</h2>
+                    <form id="contact-form" action="[YOUR_PROCESSING_SCRIPT_URL]" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                         <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                         <div class="form-group">
+                            <label for="phone">Phone (Optional):</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                          <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <select id="subject" name="subject">
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Service Request">Service Request</option>
+                                <option value="Quote Request">Quote Request</option>
+                                <option value="Technical Support">Technical Support</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                         <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                         <div id="form-status" role="alert"></div>
+                    </form>
+                </div>
+
+                <div class="contact-info-container">
+                     <h2>Contact Information</h2>
+                      <div class="contact-details">
+                          <div class="contact-item">
+                              <i class="fas fa-phone contact-icon"></i>
+                              <div><strong>Phone:</strong><br><a href="tel:+1234567890">[Your Phone Number]</a></div> </div>
+                           <div class="contact-item">
+                               <i class="fas fa-envelope contact-icon"></i>
+                               <div><strong>Email:</strong><br><a href="mailto:info@yourcompany.com">[Your Email Address]</a></div> </div>
+                           <div class="contact-item">
+                               <i class="fas fa-map-marker-alt contact-icon"></i>
+                              <div><strong>Address (If applicable):</strong><br>[Your Full Street Address]<br>[City, Postal Code]</div> </div>
+                          <div class="contact-item">
+                               <i class="fas fa-clock contact-icon"></i>
+                               <div><strong>Business Hours:</strong><br>Monday to Friday: [Your Hours]<br>Saturdays: [Your Hours, if applicable]<br>Sundays: Closed</div> </div>
+                     </div>
+                     <div class="map-container">
+                         <h3>Our Location</h3>
+                          <div class="map-placeholder">... Map Placeholder ...</div>
+                     </div>
+                     <div class="alternative-cta">
+                         <h3>Need Urgent Help?</h3>
+                         <p>Call us directly for a faster response during our business hours.</p>
+                          <a href="tel:+1234567890" class="btn btn-secondary">[Your Phone Number]</a>
+                     </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+         <div class="container footer-content">
+            <div class="footer-about">
+                 <h4>DP IT Technology</h4>
+                  <p>Your reliable partner...</p> </div>
+            <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div>
+            <div class="footer-contact"><h4>Contact</h4><p><i class="fas fa-envelope footer-icon"></i> Email: <a href="mailto:info@yourcompany.com">[Your Email]</a></p><p><i class="fas fa-phone footer-icon"></i> Phone: <a href="tel:+1234567890">[Your Phone Number]</a></p><p><i class="fas fa-map-marker-alt footer-icon"></i> [Your Address, if applicable]</p><div class="social-icons"><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></div></div>
+        </div>
+         <div class="footer-bottom">
+            <div class="container">
+                 <p style="font-size: 0.85em; color: #ccc; margin-bottom: 5px;">Student ID: 35549445 | Public IP: 3.107.180.255</p>
+                 <p>© <span id="current-year"></span> DP IT Technology. All rights reserved.</p>
+                 <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+            </div>
+        </div>
+    </footer>
+
+    </body>
+</html>
