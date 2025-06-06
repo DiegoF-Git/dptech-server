@@ -78,7 +78,11 @@ This repository documents the full process of deploying a secure web server on A
     sudo apt install certbot python3-certbot-apache -y
     sudo certbot --apache
     ```
-11. Deployed HTML, CSS files using `scp` and/or `MobaXterm` drag-drop.
+11. Deployed HTML, CSS files using `scp` and/or `MobaXterm` drag-drop:
+
+    ```bash
+    scp -i /path/to/diegokey.pem -r ./html-files/* ubuntu@<Elastic-IP>:/var/www/html/
+    ```
 12. Verified web structure and HTTPS security lock.
 13. Recorded video walkthrough and screenshots.
 
@@ -99,7 +103,7 @@ This repository documents the full process of deploying a secure web server on A
 * Upload files to server:
 
   ```bash
-  scp -i /path/to/diegokey.pem index.html ubuntu@<Elastic-IP>:/var/www/html/
+  scp -i /path/to/diegokey.pem -r ./html-files/* ubuntu@<Elastic-IP>:/var/www/html/
   ```
 
 ---
@@ -137,14 +141,18 @@ The two domains are nearly identical in functionality and configuration. The bac
 
 ---
 
-## 📅 Progress Log
+## 📅 Progress Log (Simulated Commits)
 
-* Initial EC2 instance creation and key configuration
-* Apache server setup
-* Elastic IP allocation and domain registration
-* HTTPS/TLS integration with Certbot
-* File uploads and web testing
-* Video recording & README enhancements
+* ✅ Initial commit: project setup and purpose documentation
+* ✅ Added EC2 launch and key pair creation steps
+* ✅ Included Apache installation and firewall config
+* ✅ Documented Elastic IP and DNS setup via Namecheap
+* ✅ Wrote TLS configuration steps with Certbot
+* ✅ Transferred website files and verified structure
+* ✅ Linked domains and tested HTTP/S connectivity
+* ✅ Added walkthrough video section
+* ✅ Clarified use of dual domains for academic transparency
+* ✅ Final polishing of README formatting and clarity
 
 ---
 
