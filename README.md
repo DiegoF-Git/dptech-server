@@ -1,202 +1,151 @@
-# dptech-server
-
-Cloud infrastructure project for [dptech.online](https://dptech.online) hosted on AWS EC2.
-This repository contains documentation, automation scripts, deployment details, and configuration for the dptech.online production server.
+# dptech.online – Server Deployment Documentation (Assignment 2)
 
 ---
 
-## 📀 Overview
-
-**DPTech** is an IT services business offering:
-
-* Hardware Repair & Diagnostics
-* Malware Removal & OS Optimization
-* Network Setup, Wi-Fi & Security
-* Cloud Solutions, Training, and Help Desk
-
-The purpose of this project was to simulate a real-world deployment using Amazon EC2, delivering a secure, scalable infrastructure for a tech support business. It includes end-to-end implementation from cloud setup to domain registration, DNS, TLS encryption, automation, and cost analysis.
-
----
-
-## 🏩 Infrastructure Details
-
-* **Cloud Provider:** Amazon Web Services (AWS) - EC2 (Elastic Compute Cloud)
-* **Instance:** Ubuntu 24.04 LTS, t3.micro, gp3 30 GB SSD (Asia Pacific - Sydney)
-* **Security Group:** TCP Ports 22, 80, 443 opened
-* **Elastic IP:** 3.107.180.255 (original) and new static IP for demo server
-* **Domain:** Registered via Namecheap - `dptech.online` and demo domain `dptech2.online`
-* **DNS Records:** A records pointing to the EC2 IP
-* **TLS Certificate:** Let’s Encrypt via Certbot (Snap-based installation)
-* **Web Server:** Apache2
-
----
-
-## 📊 Step-by-Step Summary
-
-### 1. Amazon EC2 Setup
-
-* Logged into AWS Console and launched Ubuntu 24.04 LTS on t3.micro
-* Created key pair `diegokey.pem` (reused for both original and demo instances)
-* Configured security group to open ports 22, 80, and 443
-* Allocated and associated Elastic IP to demo server
-* Used MobaXterm to SSH into the server:
-
-```bash
-ssh -i D:\amazon\diegokey.pem ubuntu@<Your-Elastic-IP>
-```
-
-* Installed Apache:
-
-```bash
-sudo apt update
-sudo apt install apache2 -y
-sudo systemctl enable apache2
-sudo systemctl start apache2
-```
-
-* Verified Apache status and default page
-
-### 2. Domain Registration & DNS
-
-* Purchased `dptech.online` and `dptech2.online` from Namecheap
-* Configured A records to point to EC2 Elastic IP
-* Verified DNS:
-
-```bash
-ping dptech2.online
-nslookup dptech2.online
-dig dptech2.online
-wget http://dptech2.online
-```
-
-### 3. TLS Certificate with Certbot (Snap-based)
-
-* Opened port 443 in AWS Security Group
-* Installed Certbot via Snap:
-
-```bash
-sudo snap install core
-sudo snap refresh core
-sudo snap install --classic certbot
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
-```
-
-* Generated certificate:
-
-```bash
-sudo certbot --apache
-```
-
-* Verified HTTPS and redirect:
-
-```bash
-curl -Iv https://dptech2.online
-```
-
-### 4. Website Deployment
-
-* Removed default index:
-
-```bash
-sudo rm /var/www/html/index.html
-```
-
-* Uploaded content with MobaXterm:
-
-```bash
-scp -i diegokey.pem *.html *.css ubuntu@<Elastic-IP>:/var/www/html/
-```
-
-* Adjusted permissions:
-
-```bash
-sudo chown -R www-data:www-data /var/www/html/*
-sudo systemctl reload apache2
-```
-
-* Site files deployed:
-
-  * `index.html`, `services.html`, `about.html`, `contact.html`, `style.css`
-
-### 5. Backup Script
-
-* Created script `/usr/bin/testscript` to zip backup files
-* Used cron to run hourly
-* Manually tested script
-
----
-
-## 🌐 Website Files
-
-```
-.
-├── index.html         # Homepage
-├── services.html      # IT service descriptions
-├── about.html         # Company info, Project Proposal & Licence Rationale
-├── contact.html       # Contact form and info
-└── style.css          # Main stylesheet
-```
-
----
-
-## 🌐 TCO Analysis Summary (3 Years)
-
-| Platform           | Year 1   | Year 2  | Year 3  | Total    |
-| ------------------ | -------- | ------- | ------- | -------- |
-| **On-Prem**        | \$10,094 | \$3,116 | \$3,240 | \$16,450 |
-| **AWS EC2 (IaaS)** | \$1,344  | \$1,385 | \$1,426 | \$4,155  |
-| **WP.com (SaaS)**  | \$862    | \$888   | \$915   | \$2,665  |
-
----
-
-## 🚀 GitHub Deployment
-
-Repo URL: [https://github.com/DiegoF-Git/dptech-server](https://github.com/DiegoF-Git/dptech-server)
-
-Includes:
-
-* HTML/CSS website files (v1 and v2)
-* Updated structure (added demo domain and Elastic IP)
-* Documentation built iteratively
-* TLS and DNS verified on both domains
-
----
-
-## 🎮 Video Recording Notes
-
-* Separate EC2 instance created with Elastic IP for illustration
-* OBS Studio used to record entire process
-* Justification provided for having two environments (production & demo)
-
----
-
-## 📚 Author
-
-**Name:** Diego Pedraza
+**Student Name:** Diego Pedraza
 **Student ID:** 35549445
-**Unit:** ICT171 - Server Environments and Architectures
+**Unit:** ICT171 – Introduction to Server Environments and Architectures
+**Assignment:** Part B – Server Deployment and Documentation
+**Submission Date:** 9th June 2025
 
 ---
 
-## ✅ Final Testing Checklist
+## 🌐 Deployed Website
 
-* [x] DNS resolves and A records confirmed
-* [x] Apache Web Server fully operational
-* [x] HTTPS enabled with valid certificate
-* [x] Website content deployed successfully
-* [x] Backup script tested manually and via cron
-* [x] Files timestamped correctly in zip format
-* [x] Server secure with correct ports
-* [x] Elastic IP used in demo instance
-* [x] Documentation and GitHub iteratively updated
+**Main Domain:** [https://www.dptech.online](https://www.dptech.online)
+**Backup/Video Recording Domain:** [https://www.dptech2.online](https://www.dptech2.online)
+
+These sites are hosted on separate EC2 instances and replicate the same environment for demonstration and documentation purposes.
 
 ---
 
-## 🔮 Future Improvements
+## ✅ Purpose of this Repository
 
-* Add CloudFront for CDN
-* Backup to AWS S3
-* Automate snapshot scheduling
-* Monitor with AWS CloudWatch & Budgets
+This repository documents the full process of deploying a secure web server on AWS EC2, including DNS configuration, HTTPS setup with TLS, and file transfer. It includes video recordings, screenshots, and written explanations to ensure the process can be replicated within a few hours if needed.
 
 ---
+
+## 📁 Repository Structure
+
+```
+├── README.md
+├── /screenshots       <- Visual evidence from EC2, domain setup, TLS, and file transfer
+├── /scripts           <- Bash or server configuration scripts (if any used)
+├── /html-files        <- Final website HTML/CSS files
+└── /video             <- Final walkthrough recording
+```
+
+---
+
+## 🚀 EC2 Instance Details
+
+| Detail        | Information                   |
+| ------------- | ----------------------------- |
+| Region        | ap-southeast-2 (Sydney)       |
+| OS            | Ubuntu Server 22.04 LTS       |
+| Instance Type | t2.micro (Free Tier)          |
+| Elastic IP    | Enabled (dptech2.online only) |
+| Apache        | Installed and enabled         |
+| Certbot/TLS   | Configured via Let's Encrypt  |
+
+---
+
+## 📝 Steps Completed
+
+1. Created EC2 instance on AWS.
+2. Created and configured a new key pair (`diegokey.pem`).
+3. Assigned a security group (port 22, 80, 443 open).
+4. Connected to the instance using **MobaXterm**.
+5. Installed Apache2 and enabled the service:
+
+   ```bash
+   sudo apt update && sudo apt install apache2 -y
+   sudo systemctl enable apache2
+   sudo systemctl start apache2
+   ```
+6. Configured Elastic IP (for dptech2.online).
+7. Registered domain via Namecheap (`dptech2.online`).
+8. Updated domain DNS records (A record to Elastic IP).
+9. Used `wget` and `curl` to verify site reachability:
+
+   ```bash
+   wget http://dptech2.online
+   curl -Iv https://dptech2.online
+   ```
+10. Installed Certbot for TLS:
+
+    ```bash
+    sudo apt install certbot python3-certbot-apache -y
+    sudo certbot --apache
+    ```
+11. Deployed HTML, CSS files using `scp` and/or `MobaXterm` drag-drop.
+12. Verified web structure and HTTPS security lock.
+13. Recorded video walkthrough and screenshots.
+
+---
+
+## 🛠 Commands Used Frequently
+
+* SSH Access:
+
+  ```bash
+  ssh -i "/path/to/diegokey.pem" ubuntu@<Elastic-IP>
+  ```
+* Change file permissions (for .pem):
+
+  ```bash
+  chmod 400 /path/to/diegokey.pem
+  ```
+* Upload files to server:
+
+  ```bash
+  scp -i /path/to/diegokey.pem index.html ubuntu@<Elastic-IP>:/var/www/html/
+  ```
+
+---
+
+## 🎬 Video Documentation
+
+All core steps above were recorded using OBS.
+The video includes:
+
+* EC2 creation & connection
+* Apache + Certbot setup
+* Domain linking
+* File uploads
+* HTTPS verification
+
+👉 \[Link to Video Walkthrough] (to be added)
+
+---
+
+## 🔁 Clarification on Dual Domains
+
+* **dptech.online** – Primary website hosted on an EC2 instance **without Elastic IP** (IP: 3.107.180.255).
+* **dptech2.online** – Mirror server created for video and documentation purposes, using Elastic IP.
+
+The two domains are nearly identical in functionality and configuration. The backup was created to properly record the setup steps which were missed initially on the main instance.
+
+---
+
+## 📌 Notes
+
+* All documentation is based on **real AWS deployment**.
+* Steps were verified live during video capture.
+* Screenshots are stored in the `screenshots/` folder.
+* This guide enables full reconstruction within **2 hours** if needed.
+
+---
+
+## 📅 Progress Log
+
+* Initial EC2 instance creation and key configuration
+* Apache server setup
+* Elastic IP allocation and domain registration
+* HTTPS/TLS integration with Certbot
+* File uploads and web testing
+* Video recording & README enhancements
+
+---
+
+*Thank you for reviewing my submission!*
