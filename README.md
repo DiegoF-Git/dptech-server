@@ -85,6 +85,9 @@ This repository documents the full process of deploying a secure web server on A
     ```
 12. Verified web structure and HTTPS security lock.
 13. Recorded video walkthrough and screenshots.
+14. Installed and configured GitHub Desktop to track markdown file history.
+15. Created iterative commits with detailed messages reflecting progress.
+16. Updated README.md with detailed structure, purpose, and reflection.
 
 ---
 
@@ -153,6 +156,11 @@ The two domains are nearly identical in functionality and configuration. The bac
 * ✅ Added walkthrough video section
 * ✅ Clarified use of dual domains for academic transparency
 * ✅ Final polishing of README formatting and clarity
+* ✅ Installed GitHub Desktop and prepared commit history
+* ✅ Started iterative commits with contextual updates
+* ✅ Logged markdown structure changes and link verifications
+* ✅ Reviewed rubric and adjusted structure to meet all requirements
+* ✅ Finalized submission for review
 
 ---
 
