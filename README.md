@@ -21,14 +21,13 @@
 10. [Website Updating Files](#website-updating-files)
 11. [Backup Automation Script](#backup-automation-script)
 12. [Cron Job Setup](#cron-job-setup)
-13. [GitHub Repository](#github-repository)
-14. [Total Cost of Ownership (TCO)](#total-cost-of-ownership-tco---3-year-analysis)
-15. [Troubleshooting Guide](#troubleshooting-guide)
-16. [Performance Monitoring](#performance-monitoring)
-17. [Security Best Practices](#security-best-practices)
-18. [Final Testing Checklist](#final-testing-checklist)
-19. [Video Explainer](#-video-explainer)
-20. [References](#references)
+13. [Total Cost of Ownership (TCO)](#total-cost-of-ownership-tco---3-year-analysis)
+14. [Troubleshooting Guide](#troubleshooting-guide)
+15. [Performance Monitoring](#performance-monitoring)
+16. [Security Best Practices](#security-best-practices)
+17. [Final Testing Checklist](#final-testing-checklist)
+18. [Video Explainer](#-video-explainer)
+19. [References](#references)
 
 ## Project Purpose and Scope
 
@@ -364,17 +363,6 @@ The script is designed to run automatically via cron, ensuring regular backups w
 - `0 * * * * ubuntu /usr/bin/testscript`
 - Checked cron logs and /home/ubuntu/backup to verify automatic execution
 - Confirmed zip files were created with date-based filenames every hour
-
-# GitHub Repository
-
-![GitHub Desktop](images/image15.png)
-
-- Pending publication at GitHub
-- Will include:
-  - Complete script with comments
-  - HTML/CSS source code
-  - Deployment instructions in README.md
-  - DNS and TLS testing outputs
 
 # Clarification on Dual Domains
 
