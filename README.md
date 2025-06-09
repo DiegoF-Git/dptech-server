@@ -8,9 +8,9 @@
 **Primary Domain:** https://dptech.online  
 **Replica/Test Domain:** https://dptech2.online
 
-## 📋 Table of Contents
+## Table of Contents
 - [Cloud Server Project: dptech.online](#cloud-server-project-dptechonline)
-  - [📋 Table of Contents](#-table-of-contents)
+  - [Table of Contents](#table-of-contents)
   - [Project Purpose and Scope](#project-purpose-and-scope)
     - [Why Infrastructure as a Service (IaaS)?](#why-infrastructure-as-a-service-iaas)
     - [Documentation Approach](#documentation-approach)
@@ -27,9 +27,9 @@
 - [TLS Certificate Setup (Let's Encrypt)](#tls-certificate-setup-lets-encrypt)
 - [`curl -Iv https://dptech.online`](#curl--iv-httpsdptechonline)
 - [Website](#website)
-    - [🎨 Website Design and Template Attribution](#-website-design-and-template-attribution)
-    - [⭐ Icons Used](#-icons-used)
-    - [🛠️ DP IT Technology Services Summary](#️-dpittechnology-services-summary)
+    - [Website Design and Template Attribution](#website-design-and-template-attribution)
+    - [Icons Used](#icons-used)
+    - [DP IT Technology Services Summary](#dpittechnology-services-summary)
 - [Backup Automation Script](#backup-automation-script)
     - [Script Functionality Explanation](#script-functionality-explanation)
 - [Cron Job Setup](#cron-job-setup)
@@ -106,7 +106,7 @@ Domains registered on [Namecheap](https://www.namecheap.com/) and configured as 
 | dptech.online | 3.107.180.255 | ✅ | Main server |
 | dptech2.online | 13.237.145.105 | ✅ | Replica Test server for documentation |
 
-📌 Both domains use A records pointing to their respective public Elastic IPs.
+Both domains use A records pointing to their respective public Elastic IPs.
 
 # Hosting Platform: Amazon EC2
 
@@ -297,23 +297,23 @@ sudo systemctl reload apache2
 - `sudo systemctl reload apache2`
 - Website loaded properly at https://dptech.online/.
 
-### 🎨 Website Design and Template Attribution
+### Website Design and Template Attribution
 
 The frontend of the **dptech.online** website was developed using a customized HTML/CSS template based on the open-source Bootstrap template:
 
-- 📄 **Source template**: [Business Frontpage – Start Bootstrap](https://startbootstrap.com/template/business-frontpage)  
-- 🆓 **License**: [MIT License](https://github.com/StartBootstrap/startbootstrap-business-frontpage/blob/master/LICENSE)
+- **Source template**: [Business Frontpage – Start Bootstrap](https://startbootstrap.com/template/business-frontpage)  
+- **License**: [MIT License](https://github.com/StartBootstrap/startbootstrap-business-frontpage/blob/master/LICENSE)
 
 The template was adapted to match the branding and service structure of DPTech. This includes modified color schemes, HTML sections, and service categories.
 
-### ⭐ Icons Used
+### Icons Used
 
 This project makes use of **Font Awesome Free Icons** to enhance visual clarity and modern design:
 
-- 🔗 [Font Awesome](https://fontawesome.com/)  
-- 🧾 **License**: Free icons are released under **Creative Commons Attribution 4.0** and **MIT License**
+- [Font Awesome](https://fontawesome.com/)  
+- **License**: Free icons are released under **Creative Commons Attribution 4.0** and **MIT License**
 
-### 🛠️ DP IT Technology Services Summary
+### DP IT Technology Services Summary
 
 DP IT Technology is an independent IT solutions provider offering a comprehensive range of technical services including:
 
