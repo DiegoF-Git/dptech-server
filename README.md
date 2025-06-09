@@ -18,15 +18,15 @@
 7. [Apache-Server](#apache-server)
 8. [Domain Registration and DNS Setup](#3-domain-registration-and-dns-setup)
 9. [TLS Certificate Setup](#tls-certificate-setup-lets-encrypt)
-10. [Website Updating Files](#website-updating-files)
-11. [Scripts](#backup-automation-script)
+10. [Website](#Website)
+11. [Scripts](#Script)
 12. [Cron Job Setup](#cron-job-setup)
 13. [Total Cost of Ownership (TCO)](#total-cost-of-ownership-tco---3-year-analysis)
 14. [Troubleshooting Guide](#troubleshooting-guide)
 15. [Performance Monitoring](#performance-monitoring)
 16. [Security Best Practices](#security-best-practices)
 17. [Final Testing Checklist](#final-testing-checklist)
-18. [Video Explainer](#-video-explainer)
+18. [Video](#Video)
 19. [References](#references)
 
 ## Project Purpose and Scope
@@ -254,7 +254,7 @@ sudo chown -R www-data:www-data /var/www/html/
 sudo systemctl reload apache2
 ```
 
-**Web-Update**
+**Website-Update**
 
 ![Live Website](images/image14.png)
 
@@ -307,25 +307,33 @@ DP IT Technology is an independent IT solutions provider offering a comprehensiv
   Ready to help with your technology needs. Contact us for a free consultation!
 
 # Script
+## Script 1: Daily Status Report
 
-Script: Daily Status Report
-Objective
-The daily_status_report.sh script is designed to generate a snapshot of the server's status, including uptime, CPU and memory usage, and disk space. It stores the output in a timestamped file under /home/ubuntu/server_reports/.
+### Objective
+The `daily_status_report.sh` script is designed to generate a snapshot of the server's status including uptime, CPU and memory usage, and disk space. It stores the output in a timestamped file under `/home/ubuntu/server_reports/`.
 
-Step-by-Step Instructions
-Create the folder to store the reports
+### Step-by-step Instructions
 
+1. Create the folder to store the reports
+
+```bash
 mkdir -p /home/ubuntu/server_reports
+```
 
-Create the script file
+2. Create the script file
 
+```bash
 nano /home/ubuntu/daily_status_report.sh
+```
 
-Paste the following content
+3. Paste the following content
 
+```bash
 #!/bin/bash
-
 # Script to generate server status report
+# Author: Diego Pedraza
+# This script creates comprehensive server status reports
+
 NOW=$(date +"%Y-%m-%d_%H-%M")
 REPORT="/home/ubuntu/server_reports/report_$NOW.txt"
 
@@ -348,34 +356,146 @@ echo "Top 5 Processes by Memory Usage:" >> $REPORT
 ps aux --sort=-%mem | head -n 5 >> $REPORT
 
 echo "Report saved to: $REPORT"
+```
 
-Use Ctrl + O to save and Ctrl + X to exit.
+Use `Ctrl + O` to save and `Ctrl + X` to exit.
 
-Make the script executable
+4. Make the script executable
 
+```bash
 chmod +x /home/ubuntu/daily_status_report.sh
+```
 
-Test the script manually
+5. Test the script manually
 
+```bash
 /home/ubuntu/daily_status_report.sh
+```
 
 Verify the result in:
 
-/home/ubuntu/server_reports/
+```bash
+ls -la /home/ubuntu/server_reports/
+```
 
-Make the script system-wide
+6. Make the script system-wide
 
+```bash
 sudo mv /home/ubuntu/daily_status_report.sh /usr/bin/daily_status_report
 sudo chown ubuntu /usr/bin/daily_status_report
+```
 
 Now you can run it from any location with:
 
+```bash
 daily_status_report
+```
 
+## Script 2: Apache Monitor
+
+### Objective
+This script checks whether the Apache service (apache2) is active. If it's not running, it automatically restarts the service and logs the event. It's useful for keeping your website always online without requiring manual checks.
+
+### Step-by-step Instructions
+
+1. Create the log directory
+
+```bash
+mkdir -p /home/ubuntu/apache_logs
+```
+
+2. Create the script file
+
+```bash
+nano /home/ubuntu/apache_monitor.sh
+```
+
+3. Paste the following content
+
+```bash
+#!/bin/bash
+# Apache Monitoring Script
+# Author: Diego Pedraza
+# Monitors Apache service and automatically restarts if needed
+
+LOGFILE="/home/ubuntu/apache_logs/apache_monitor.log"
+TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+
+echo "[$TIMESTAMP] Checking Apache service..." >> $LOGFILE
+
+# Check if Apache is active
+if systemctl is-active --quiet apache2
+then
+    echo "[$TIMESTAMP] Apache is running." >> $LOGFILE
+else
+    echo "[$TIMESTAMP] Apache is NOT running. Restarting..." >> $LOGFILE
+    sudo systemctl start apache2
+    if systemctl is-active --quiet apache2
+    then
+        echo "[$TIMESTAMP] Apache successfully restarted." >> $LOGFILE
+    else
+        echo "[$TIMESTAMP] Failed to restart Apache!" >> $LOGFILE
+    fi
+fi
+```
+
+Save with `Ctrl + O`, then exit with `Ctrl + X`.
+
+4. Make the script executable
+
+```bash
+chmod +x /home/ubuntu/apache_monitor.sh
+```
+
+5. Test it manually
+
+First stop the service (just for testing):
+
+```bash
+sudo systemctl stop apache2
+```
+
+Then run the script:
+
+```bash
+/home/ubuntu/apache_monitor.sh
+```
+
+Check the log with:
+
+```bash
+cat /home/ubuntu/apache_logs/apache_monitor.log
+```
+
+6. Make it system-wide (optional)
+
+```bash
+sudo mv /home/ubuntu/apache_monitor.sh /usr/bin/apache_monitor
+sudo chown ubuntu /usr/bin/apache_monitor
+```
+
+Now you can run it from anywhere:
+
+```bash
+apache_monitor
+```
+
+### Scripts Summary
+These two scripts demonstrate automation capabilities on the server:
+- **daily_status_report**: Provides comprehensive system health monitoring
+- **apache_monitor**: Ensures website availability through automatic service recovery
+
+Both scripts can be scheduled via cron for fully automated operation.
 
 # Cron Job Setup
 
-
+- Opened crontab:
+- `sudo nano /etc/crontab`
+- Added the following entries:
+- `0 * * * * ubuntu /usr/bin/daily_status_report`
+- `*/5 * * * * ubuntu /usr/bin/apache_monitor`
+- Checked cron logs to verify automatic execution
+- Confirmed scripts are running automatically as scheduled
 
 # Clarification on Dual Domains
 
@@ -581,7 +701,7 @@ sudo journalctl -f
 - Optional off-site backup capability
 - Regular backup testing and verification
 
-## Video Explainer
+## Video
 [Link to video explainer - TO BE ADDED]
 
 ### Video Content Overview
