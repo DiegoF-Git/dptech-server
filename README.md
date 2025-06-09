@@ -3,36 +3,64 @@
 **Student:** Diego Pedraza  
 **Student ID:** 35549445  
 **Unit:** ICT171 - Server Environments and Architectures  
-**Project Name:** dptech.online  
-**Project Type:** Cloud-hosted IT services website with secure access, scripting automation, and cost analysis  
+**Project Name:** DP IT Technology  
+**Project Type:** Cloud-hosted IT services website with secure access
 **Primary Domain:** https://dptech.online  
 **Replica/Test Domain:** https://dptech2.online
 
 ## 📋 Table of Contents
-1. [Project Purpose and Scope](#project-purpose-and-scope)
-2. [Cloud Infrastructure Overview](#cloud-infrastructure-overview)
-3. [Local Machine Setup](#local-machine-setup)
-4. [Domain Configuration](#domain-configuration)
-5. [Hosting Platform: Amazon EC2](#hosting-platform-amazon-ec2)
-6. [SSH Connection](#ssh-connection)
-7. [Apache-Server](#apache-server)
-8. [Domain Registration and DNS Setup](#3-domain-registration-and-dns-setup)
-9. [TLS Certificate Setup](#tls-certificate-setup-lets-encrypt)
-10. [Website Updating Files](#website-updating-files)
-11. [Backup Automation Script](#backup-automation-script)
-12. [Cron Job Setup](#cron-job-setup)
-13. [GitHub Repository](#github-repository)
-14. [Total Cost of Ownership (TCO)](#total-cost-of-ownership-tco---3-year-analysis)
-15. [Troubleshooting Guide](#troubleshooting-guide)
-16. [Performance Monitoring](#performance-monitoring)
-17. [Security Best Practices](#security-best-practices)
-18. [Final Testing Checklist](#final-testing-checklist)
-19. [Video Explainer](#-video-explainer)
-20. [References](#references)
+- [Cloud Server Project: dptech.online](#cloud-server-project-dptechonline)
+  - [📋 Table of Contents](#-table-of-contents)
+  - [Project Purpose and Scope](#project-purpose-and-scope)
+    - [Why Infrastructure as a Service (IaaS)?](#why-infrastructure-as-a-service-iaas)
+    - [Documentation Approach](#documentation-approach)
+  - [Cloud Infrastructure Overview](#cloud-infrastructure-overview)
+  - [Local Machine Setup](#local-machine-setup)
+  - [Domain Configuration](#domain-configuration)
+- [Hosting Platform: Amazon EC2](#hosting-platform-amazon-ec2)
+- [SSH Connection](#ssh-connection)
+    - [Key File Security in MobaXterm](#key-file-security-in-mobaxterm)
+    - [First Connection Checklist](#first-connection-checklist)
+- [Apache-Server](#apache-server)
+    - [Testing Apache Installation](#testing-apache-installation)
+  - [Domain Registration and DNS Setup](#domain-registration-and-dns-setup)
+- [TLS Certificate Setup (Let's Encrypt)](#tls-certificate-setup-lets-encrypt)
+- [`curl -Iv https://dptech.online`](#curl--iv-httpsdptechonline)
+- [Website](#website)
+    - [🎨 Website Design and Template Attribution](#-website-design-and-template-attribution)
+    - [⭐ Icons Used](#-icons-used)
+    - [🛠️ DP IT Technology Services Summary](#️-dpittechnology-services-summary)
+- [Backup Automation Script](#backup-automation-script)
+    - [Script Functionality Explanation](#script-functionality-explanation)
+- [Cron Job Setup](#cron-job-setup)
+- [GitHub Repository](#github-repository)
+- [Clarification on Dual Domains](#clarification-on-dual-domains)
+- [Total Cost of Ownership (TCO) - 3 Year Analysis](#total-cost-of-ownership-tco---3-year-analysis)
+  - [Three-Year Cost Summary](#three-year-cost-summary)
+  - [Cloud Platform (IaaS) - Cost Breakdown (AUD)](#cloud-platform-iaas---cost-breakdown-aud)
+  - [On-Prem (Dell R550) - Cost Breakdown (AUD)](#on-prem-dell-r550---cost-breakdown-aud)
+  - [Web Platform (SaaS) - Cost Breakdown (AUD)](#web-platform-saas---cost-breakdown-aud)
+- [Final Testing Checklist](#final-testing-checklist)
+  - [Troubleshooting Guide](#troubleshooting-guide)
+    - [Common Issues and Solutions](#common-issues-and-solutions)
+      - [SSH Connection Issues](#ssh-connection-issues)
+      - [DNS Not Resolving](#dns-not-resolving)
+      - [Apache Issues](#apache-issues)
+      - [SSL Certificate Problems](#ssl-certificate-problems)
+      - [Website Not Loading](#website-not-loading)
+  - [Performance Monitoring](#performance-monitoring)
+    - [System Resource Monitoring](#system-resource-monitoring)
+    - [Log Analysis](#log-analysis)
+  - [Security Best Practices](#security-best-practices)
+    - [Server Hardening Steps Implemented](#server-hardening-steps-implemented)
+    - [Backup Best Practices](#backup-best-practices)
+  - [📹 Video Explainer](#-video-explainer)
+    - [Video Content Overview](#video-content-overview)
+  - [References](#references)
 
 ## Project Purpose and Scope
 
-This cloud infrastructure project aimed to deploy a fully operational IT services website, **dptech.online**, using Amazon Web Services (AWS) EC2 to simulate a real-world business scenario. DPTech provides diverse services, such as hardware repairs, virus removals, data recovery, networking assistance, and cloud IT consulting. The solution was designed to be secure, cost-effective, and scalable with automated tasks to simulate a professional-grade cloud deployment. The scope involved registering a domain, configuring DNS records, launching a Linux EC2 instance, installing and configuring a web server, implementing TLS encryption, scripting backup procedures, automating tasks with cron, and documenting total cost of ownership over three years. Each step was carried out with a focus on reproducibility, allowing the server to be redeployed independently in the future.
+This cloud infrastructure project was built to create a fully functional IT services website **dptech.online** using AWS EC2 intended to emulate a live business environment. DPTech provides a variety of services including hardware repairs and replacement, virus removal, data retrieval, networking support and cloud IT consulting. The solution was designed to be full secure, cost-efficient and scalable with some automated processes to simulate a production quality cloud deployment. The scope included buying a domain, changing DNS records a domain registrar, launching a Linux EC2 instance, loading and configuring a web server, setting up TLS, writing a backup process, using cron to automate different processes and documenting a total cost of ownership over three years. Each of these tasks was performed in such a manner to create the most reproducible and releasable instance which would allow for the sever to be redeployed independently at a later date.
 
 ### Why Infrastructure as a Service (IaaS)?
 This project specifically uses IaaS (AWS EC2) rather than Platform as a Service (PaaS) or Software as a Service (SaaS) to demonstrate:
@@ -47,7 +75,7 @@ This documentation is designed to be:
 - **Reproducible**: Another ICT171 student could rebuild this server without additional research
 - **Complete**: All commands, configurations, and decisions are documented
 - **Professional**: Written as technical documentation for IT staff
-- **Practical**: Focused on real implementation rather than theory
+- **Practical**: Focused on real implementation
 
 ## Cloud Infrastructure Overview
 
@@ -56,8 +84,8 @@ This documentation is designed to be:
 | **Platform** | AWS EC2 – IaaS |
 | **Instance Type** | t3.micro (Free Tier eligible) |
 | **OS** | Ubuntu Server 24.04 LTS |
-| **Elastic IP (Main)** | 3.107.180.255 |
-| **Elastic IP (Test)** | 13.237.145.105 |
+| **Main** | 3.107.180.255 (172.31.13.70 private IP)|
+| **Test (with Elastic IP)** | 13.237.145.105 (172.31.4.126 private IP)|
 | **Security Rules** | TCP: 22 (SSH), 80 (HTTP), 443 (HTTPS) |
 
 ## Local Machine Setup
@@ -75,7 +103,7 @@ Domains registered on [Namecheap](https://www.namecheap.com/) and configured as 
 
 | **Domain** | **IP Address** | **SSL** | **Purpose** |
 |------------|----------------|---------|-------------|
-| dptech.online | 3.107.180.255 | ✅ | Production server |
+| dptech.online | 3.107.180.255 | ✅ | Main server |
 | dptech2.online | 13.237.145.105 | ✅ | Replica Test server for documentation |
 
 📌 Both domains use A records pointing to their respective public Elastic IPs.
@@ -89,6 +117,8 @@ Amazon EC2 (Elastic Compute Cloud) was selected for this project due to its flex
 ![AWS EC2 Console](images/image1.png)
 
 ![EC2 Instance Launch](images/image2.png)
+
+Enter the page:
 
 - http://aws.amazon.com/ec2/
 
@@ -147,29 +177,12 @@ ls -la /drives/d/amazon/diegokey.pem
 - `sudo systemctl start apache2`
 - Verified service with `systemctl status apache2` and accessed the default Apache landing page from a browser.
 
-### Apache Configuration Details
-```bash
-# Check Apache version
-apache2 -v
-
-# Verify Apache is listening on ports
-sudo netstat -tlnp | grep apache2
-
-# Enable essential Apache modules
-sudo a2enmod rewrite
-sudo a2enmod headers
-sudo a2enmod ssl
-
-# Restart Apache after module changes
-sudo systemctl restart apache2
-```
-
 ### Testing Apache Installation
 1. **Local test**: `curl http://localhost`
-2. **External test**: Navigate to `http://YOUR_EC2_IP` in browser
+2. **External test**: Navigate to `http://YOUR_EC2_IP` in that case 3.107.180.255 (Main Server) or 13.237.145.105 (Test Server)  in browser
 3. **Check logs**: `sudo tail -f /var/log/apache2/access.log`
 
-## 3. Domain Registration and DNS Setup
+## Domain Registration and DNS Setup
 
 ![Namecheap Dashboard](images/image7.png)
 
@@ -211,11 +224,17 @@ To enable secure connections:
 - `sudo certbot --apache`
 
 ```
-y
-N
-dptech2.online www.dptech2.online
-2
-000-default-le-ssl.conf
+Perform the following sub-actions when prompted:
+
+In the Enter email address... field: enter the email address, die_fpp@hotmail.com was entered.
+
+In "You mut agree in order to register with the ACME server. Do I agree?", answer (Y) is: Y
+
+Next option, answer (No): N
+
+Then in dptech2.online enter www.dptech2.online, which is a "Requesting a certificate for both."
+
+And finally, choose 2: 00-default-le-ssl.conf, choose: 2
 ```
 
 - Installed Snap and Certbot tools:
@@ -235,7 +254,11 @@ dptech2.online www.dptech2.online
 
 - Confirmed certificate was issued by Let's Encrypt and set to renew automatically.
 
-# Website Updating Files
+# Website
+
+ **Updating Files**
+
+ Every time changes are made, this is the process of updating files from our main computer to the EC2 server, from the local terminal then in the Ubuntu terminal where the files are copied to the Ubuntu user folder and then to the /var/www/ destination.
 
 ![File Transfer via MobaXterm](images/image12.png)
 
@@ -250,6 +273,8 @@ scp -i /drives/d/amazon/diegokey.pem -r /drives/d/amazon/webEC2/v2/css ubuntu@3.
 ![Moving Files to Web Root](images/image13.png)
 
 **On the server via SSH:**
+In summary
+
 ```bash
 sudo mv /home/ubuntu/*.html /var/www/html/
 sudo rm -r /var/www/html/css
@@ -279,7 +304,7 @@ The frontend of the **dptech.online** website was developed using a customized H
 - 📄 **Source template**: [Business Frontpage – Start Bootstrap](https://startbootstrap.com/template/business-frontpage)  
 - 🆓 **License**: [MIT License](https://github.com/StartBootstrap/startbootstrap-business-frontpage/blob/master/LICENSE)
 
-The template was adapted to match the branding and service structure of DPTech. This includes modified color schemes, HTML sections, and service categories. It was deployed manually to `/var/www/html/` and does not rely on bundled CMS tools.
+The template was adapted to match the branding and service structure of DPTech. This includes modified color schemes, HTML sections, and service categories.
 
 ### ⭐ Icons Used
 
@@ -288,9 +313,9 @@ This project makes use of **Font Awesome Free Icons** to enhance visual clarity 
 - 🔗 [Font Awesome](https://fontawesome.com/)  
 - 🧾 **License**: Free icons are released under **Creative Commons Attribution 4.0** and **MIT License**
 
-### 🛠️ DPTech Services Summary
+### 🛠️ DP IT Technology Services Summary
 
-DPTech is an independent IT solutions provider offering a comprehensive range of technical services including:
+DP IT Technology is an independent IT solutions provider offering a comprehensive range of technical services including:
 
 - **Support & Maintenance**  
   PC/Mac & Mobile Repair, Help Desk (Remote/On-site), Virus Removal & Optimization, Preventive Maintenance
@@ -381,9 +406,9 @@ The script is designed to run automatically via cron, ensuring regular backups w
 
 # Clarification on Dual Domains
 
-**Important Note:** The screenshots and video documentation were created using the test server (dptech2.online) as the original production server (dptech.online) was deployed in Assignment 1 and has been running continuously since then without documentation of the setup process.
+**Important Note:** The screenshots and video documentation come from the test server (dptech2.online) as the original production server (dptech.online) was deployed in Assignment 1 and has been continuously run since then without documentation of the setup process.
 
-- **dptech.online – Primary website hosted on an EC2 instance (IP: 3.107.180.255) deployed in Assignment 1.**
+- **dptech.online – Primary website hosted on an EC2 instance (IP: 3.107.180.255) deployed in Assignment 1. Since I did not create an Elastic IP, I have not restarted or shut down the server, to avoid losing the IP registered in Assignment1.**
 - **dptech2.online – Mirror server created for video and documentation purposes, using Elastic IP (13.237.145.105).**
 
 **The two domains are nearly identical in functionality and configuration. The test server was created to properly record the setup steps which were missed initially on the main instance.**
@@ -457,7 +482,7 @@ WordPress.com is a hosted Software as a Service (SaaS) platform that allows user
 #### SSH Connection Issues
 ```bash
 # Error: Permission denied (publickey)
-# Solution: Check key file permissions in MobaXterm
+# Solution: Check key file permissions in terminal in (my case used MobaXterm)
 chmod 400 /drives/d/amazon/diegokey.pem
 
 # Error: Connection timeout
@@ -536,7 +561,6 @@ sudo netstat -anp | grep :80 | wc -l
 # Apache status module (if enabled)
 sudo a2enmod status
 sudo systemctl restart apache2
-# Access at: http://your-ip/server-status
 ```
 
 ### Log Analysis
@@ -565,9 +589,7 @@ sudo journalctl -f
 
 3. **Regular Updates**
    ```bash
-   # Automated security updates
-   sudo apt install unattended-upgrades
-   sudo dpkg-reconfigure --priority=low unattended-upgrades
+   sudo apt install
    ```
 
 4. **SSL/TLS Configuration**
@@ -592,68 +614,11 @@ sudo journalctl -f
 ### Video Content Overview
 The video demonstration covers:
 1. Live server functionality demonstration
-2. SSH connection process via MobaXterm
+2. SSH connection process
 3. Apache configuration walkthrough
 4. SSL certificate verification
 5. Backup script execution
 6. Website navigation and features
-
----
-
-## Learning Outcomes Demonstrated
-
-This project successfully demonstrates the following ICT171 learning outcomes:
-
-### ✅ Linux Command Line Proficiency
-- Extensive use of bash commands for server management
-- File system navigation and manipulation
-- Process management and service control
-
-### ✅ Infrastructure Implementation
-- AWS EC2 instance deployment from scratch
-- Manual server configuration (not pre-built images)
-- Network security configuration
-
-### ✅ Server Installation and Configuration
-- Ubuntu Server 24.04 LTS installation
-- Apache web server setup and configuration
-- SSL/TLS certificate implementation
-
-### ✅ Version Control with GitHub
-- Comprehensive project documentation
-- Code versioning for scripts and configuration
-- Professional README documentation
-
-### ✅ Scripting Development
-- Bash script for automated backups
-- Cron job implementation for scheduling
-- Error handling and logging
-
-### ✅ Professional Documentation
-- Complete technical documentation
-- Total Cost of Ownership analysis
-- Reproducible deployment instructions
-
-### ✅ Cloud IaaS Implementation
-- Full AWS EC2 deployment
-- Domain and DNS configuration
-- Security best practices
-
----
-
-## Future Enhancements
-
-While this project meets all assignment requirements, potential future improvements include:
-
-1. **Load Balancing**: Implement AWS ELB for high availability
-2. **Database Integration**: Add MySQL/MariaDB for dynamic content
-3. **Monitoring**: Implement CloudWatch or Prometheus
-4. **CI/CD Pipeline**: Automate deployments with GitHub Actions
-5. **CDN Integration**: Use CloudFront for global content delivery
-6. **Container Migration**: Dockerize the application
-7. **Infrastructure as Code**: Implement Terraform for reproducibility
-
----
 
 ## References
 
