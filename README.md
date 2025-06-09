@@ -568,7 +568,7 @@ sudo journalctl -f
 - Optional off-site backup capability
 - Regular backup testing and verification
 
-## 📹 Video Explainer
+## Video Explainer
 [Link to video explainer - TO BE ADDED]
 
 ### Video Content Overview
