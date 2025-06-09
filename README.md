@@ -272,6 +272,44 @@ sudo systemctl reload apache2
 - `sudo systemctl reload apache2`
 - Website loaded properly at https://dptech.online/.
 
+### 🎨 Website Design and Template Attribution
+
+The frontend of the **dptech.online** website was developed using a customized HTML/CSS template based on the open-source Bootstrap template:
+
+- 📄 **Source template**: [Business Frontpage – Start Bootstrap](https://startbootstrap.com/template/business-frontpage)  
+- 🆓 **License**: [MIT License](https://github.com/StartBootstrap/startbootstrap-business-frontpage/blob/master/LICENSE)
+
+The template was adapted to match the branding and service structure of DPTech. This includes modified color schemes, HTML sections, and service categories. It was deployed manually to `/var/www/html/` and does not rely on bundled CMS tools.
+
+### ⭐ Icons Used
+
+This project makes use of **Font Awesome Free Icons** to enhance visual clarity and modern design:
+
+- 🔗 [Font Awesome](https://fontawesome.com/)  
+- 🧾 **License**: Free icons are released under **Creative Commons Attribution 4.0** and **MIT License**
+
+### 🛠️ DPTech Services Summary
+
+DPTech is an independent IT solutions provider offering a comprehensive range of technical services including:
+
+- **Support & Maintenance**  
+  PC/Mac & Mobile Repair, Help Desk (Remote/On-site), Virus Removal & Optimization, Preventive Maintenance
+
+- **Hardware & Assembly**  
+  Custom PC Building, Component Upgrades, Hardware Diagnostics, Component Sales
+
+- **Software & Data**  
+  OS & Application Installation, Advanced Data Recovery, Secure Backup Solutions, Software Configuration
+
+- **Networks & Infrastructure**  
+  Network Design & Installation, Server Administration, Network Security (Firewalls, VPN), Structured Cabling
+
+- **Additional Services**  
+  Strategic IT Consulting, Technology Training, Cloud Solutions, Business IT Support
+
+- **Contact Us**  
+  Ready to help with your technology needs. Contact us for a free consultation!
+
 # Backup Automation Script
 
 - Created structure:
