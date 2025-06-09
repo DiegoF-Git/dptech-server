@@ -4,10 +4,10 @@
 **Student ID:** 35549445  
 **Unit:** ICT171 - Server Environments and Architectures  
 **Project Name:** DP IT Technology  
-**Project Type:** Cloud-hosted IT services website with secure access
-**Primary Domain:** https://dptech.online  
-**Replica/Test Domain:** https://dptech2.online
-**Video link** https://youtu.be/YvAcEhc9uFA?si=RkePTkQZvr0iz27p
+**Project Type:** Cloud-hosted IT services website with secure access  
+**Primary Domain:** https://dptech.online    
+**Replica/Test Domain:** https://dptech2.online  
+**Video link** https://youtu.be/YvAcEhc9uFA?si=RkePTkQZvr0iz27p  
 
 ## Table of Contents
 1. [Project Purpose and Scope](#project-purpose-and-scope)
