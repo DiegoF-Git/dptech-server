@@ -702,7 +702,7 @@ sudo journalctl -f
 - Regular backup testing and verification
 
 ## Video
-[Link to video explainer - TO BE ADDED]
+
 
 ### Video Content Overview
 The video demonstration covers:
