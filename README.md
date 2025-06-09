@@ -7,6 +7,9 @@
 **Project Type:** Cloud-hosted IT services website with secure access
 **Primary Domain:** https://dptech.online  
 **Replica/Test Domain:** https://dptech2.online
+**Video link** https://youtu.be/YvAcEhc9uFA?si=RkePTkQZvr0iz27p
+ or 
+ https://drive.google.com/file/d/1hwERjeGL0OYlDry25fUpcFtrdSVmHIxf/view?usp=sharing
 
 ## Table of Contents
 1. [Project Purpose and Scope](#project-purpose-and-scope)
