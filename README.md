@@ -715,16 +715,26 @@ The video demonstration covers:
 
 ## References
 
-**Amazon Web Services, Inc. (n.d.). Amazon EC2 Documentation. Retrieved June 2025,** from https://docs.aws.amazon.com/ec2/
-**Canonical Ltd. (n.d.). Ubuntu Server documentation. Retrieved June 2025,** from https://ubuntu.com/server/docs
-**The Apache Software Foundation. (n.d.). Apache HTTP Server Version 2.4 Documentation. Retrieved June 2025,** from https://httpd.apache.org/docs/2.4/
-**Internet Security Research Group. (n.d.). Let's Encrypt Getting Started. Retrieved June 2025,** from https://letsencrypt.org/getting-started/
-**Namecheap, Inc. (n.d.). How to Change DNS For a Domain. Retrieved June 2025,** from https://www.namecheap.com/support/knowledgebase/article.aspx/319/2237/
-**Mobatek. (n.d.). MobaXterm Documentation. Retrieved June 2025,** from https://mobaxterm.mobatek.net/documentation.html
-**Bootstrap. (n.d.). Business Frontpage – Start Bootstrap. Retrieved June 2025,** from https://startbootstrap.com/template/business-frontpage
-**Font Awesome. (n.d.). Font Awesome Free License. Retrieved June 2025,** from https://fontawesome.com/license/free
-**Murdoch University Library. (n.d.). Referencing guides. Retrieved June 2025,** from http://library.murdoch.edu.au/Students/Referencing/
-**Murdoch University. (n.d.). Writing and Style Notes for ICT171. Retrieved June 2025,** from https://github.com/SCH-IT-MurdochUni/NetworkingLabs/blob/main/Reusable_Learning_Objects/writing.md
+**Amazon Web Services, Inc. (n.d.). Amazon EC2 Documentation. Retrieved June 2025,**
+ from https://docs.aws.amazon.com/ec2/
+**Canonical Ltd. (n.d.). Ubuntu Server documentation. Retrieved June 2025,**
+ from https://ubuntu.com/server/docs
+**The Apache Software Foundation. (n.d.). Apache HTTP Server Version 2.4 Documentation. Retrieved June 2025,**
+ from https://httpd.apache.org/docs/2.4/
+**Internet Security Research Group. (n.d.). Let's Encrypt Getting Started. Retrieved June 2025,**
+ from https://letsencrypt.org/getting-started/
+**Namecheap, Inc. (n.d.). How to Change DNS For a Domain. Retrieved June 2025,**
+ from https://www.namecheap.com/support/knowledgebase/article.aspx/319/2237/
+**Mobatek. (n.d.). MobaXterm Documentation. Retrieved June 2025,**
+ from https://mobaxterm.mobatek.net/documentation.html
+**Bootstrap. (n.d.). Business Frontpage – Start Bootstrap. Retrieved June 2025,**
+ from https://startbootstrap.com/template/business-frontpage
+**Font Awesome. (n.d.). Font Awesome Free License. Retrieved June 2025,**
+ from https://fontawesome.com/license/free
+**Murdoch University Library. (n.d.). Referencing guides. Retrieved June 2025,**
+ from http://library.murdoch.edu.au/Students/Referencing/
+**Murdoch University. (n.d.). Writing and Style Notes for ICT171. Retrieved June 2025,**
+ from https://github.com/SCH-IT-MurdochUni/NetworkingLabs/blob/main/Reusable_Learning_Objects/writing.md
 
 
 ---
