@@ -19,7 +19,7 @@
 8. [Domain Registration and DNS Setup](#3-domain-registration-and-dns-setup)
 9. [TLS Certificate Setup](#tls-certificate-setup-lets-encrypt)
 10. [Website Updating Files](#website-updating-files)
-11. [Backup Automation Script](#backup-automation-script)
+11. [Scripts](#backup-automation-script)
 12. [Cron Job Setup](#cron-job-setup)
 13. [Total Cost of Ownership (TCO)](#total-cost-of-ownership-tco---3-year-analysis)
 14. [Troubleshooting Guide](#troubleshooting-guide)
@@ -306,63 +306,76 @@ DP IT Technology is an independent IT solutions provider offering a comprehensiv
 - **Contact Us**  
   Ready to help with your technology needs. Contact us for a free consultation!
 
-# Backup Automation Script
+# Script
 
-- Created structure:
-- `mkdir -p /home/ubuntu/Documents`
-- `mkdir -p /home/ubuntu/backup`
-- Added sample files using touch command:
-- `touch /home/ubuntu/Documents/file1.txt`
-- `touch /home/ubuntu/Documents/file2.txt`
-- Created the backup script /usr/bin/testscript:
+Script: Daily Status Report
+Objective
+The daily_status_report.sh script is designed to generate a snapshot of the server's status, including uptime, CPU and memory usage, and disk space. It stores the output in a timestamped file under /home/ubuntu/server_reports/.
 
-```bash
+Step-by-Step Instructions
+Create the folder to store the reports
+
+mkdir -p /home/ubuntu/server_reports
+
+Create the script file
+
+nano /home/ubuntu/daily_status_report.sh
+
+Paste the following content
+
 #!/bin/bash
-# Backup Script for DPTech Server
-# Author: Diego Pedraza
-# Purpose: Automated daily backup of documents with timestamping
-# This script creates timestamped backups of the Documents folder
-# and can optionally transfer them to a remote server
 
-now=$(date +"%d_%m_%y")
-mkdir -p /home/ubuntu/backup
+# Script to generate server status report
+NOW=$(date +"%Y-%m-%d_%H-%M")
+REPORT="/home/ubuntu/server_reports/report_$NOW.txt"
 
-# Copy all documents to backup folder
-cp -R /home/ubuntu/Documents/* /home/ubuntu/backup/
+echo "===== SERVER STATUS REPORT =====" > $REPORT
+echo "Date and Time: $(date)" >> $REPORT
+echo "-------------------------------" >> $REPORT
+echo "Uptime:" >> $REPORT
+uptime >> $REPORT
+echo "" >> $REPORT
+echo "CPU and Memory Usage:" >> $REPORT
+top -b -n1 | head -n 10 >> $REPORT
+echo "" >> $REPORT
+echo "Disk Usage:" >> $REPORT
+df -h >> $REPORT
+echo "" >> $REPORT
+echo "Free Memory:" >> $REPORT
+free -h >> $REPORT
+echo "" >> $REPORT
+echo "Top 5 Processes by Memory Usage:" >> $REPORT
+ps aux --sort=-%mem | head -n 5 >> $REPORT
 
-# Create timestamped zip file
-zip -r /home/ubuntu/backup/$now.zip /home/ubuntu/backup/*
+echo "Report saved to: $REPORT"
 
-# Optional: Transfer to remote backup server
-# Uncomment the following line to enable remote backup
-# scp -i /home/ubuntu/diegokey.pem /home/ubuntu/backup/$now.zip ubuntu@3.107.180.255:/home/ubuntu/
-```
+Use Ctrl + O to save and Ctrl + X to exit.
 
-### Script Functionality Explanation
-This backup script serves as an automated solution for data protection. It performs the following operations:
-1. **Date Generation**: Creates a timestamp in DD_MM_YY format for unique file naming
-2. **Directory Creation**: Ensures the backup directory exists before operations
-3. **File Copying**: Recursively copies all contents from the Documents folder
-4. **Compression**: Creates a zip archive with the date-stamped filename
-5. **Remote Transfer**: Includes optional functionality to transfer backups to a remote server
+Make the script executable
 
-The script is designed to run automatically via cron, ensuring regular backups without manual intervention. This approach provides version history through dated archives and protects against data loss.
+chmod +x /home/ubuntu/daily_status_report.sh
 
-- Made it executable:
-- `chmod +x /usr/bin/testscript`
-- Executed manually to validate zip output:
-- `/usr/bin/testscript`
-- Verified backup creation:
-- `ls -la /home/ubuntu/backup/`
+Test the script manually
+
+/home/ubuntu/daily_status_report.sh
+
+Verify the result in:
+
+/home/ubuntu/server_reports/
+
+Make the script system-wide
+
+sudo mv /home/ubuntu/daily_status_report.sh /usr/bin/daily_status_report
+sudo chown ubuntu /usr/bin/daily_status_report
+
+Now you can run it from any location with:
+
+daily_status_report
+
 
 # Cron Job Setup
 
-- Opened crontab:
-- `sudo nano /etc/crontab`
-- Appended:
-- `0 * * * * ubuntu /usr/bin/testscript`
-- Checked cron logs and /home/ubuntu/backup to verify automatic execution
-- Confirmed zip files were created with date-based filenames every hour
+
 
 # Clarification on Dual Domains
 
