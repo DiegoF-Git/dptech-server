@@ -3,7 +3,7 @@
 **Student:** Diego Pedraza  
 **Student ID:** 35549445  
 **Unit:** ICT171 - Server Environments and Architectures  
-**Project Name:** DP IT Technology  
+**Project Name:** DP IT Technology  
 **Project Type:** Cloud-hosted IT services website with secure access
 **Primary Domain:** https://dptech.online  
 **Replica/Test Domain:** https://dptech2.online
@@ -284,9 +284,9 @@ This project makes use of **Font Awesome Free Icons** to enhance visual clarity 
 - [Font Awesome](https://fontawesome.com/)  
 - **License**: Free icons are released under **Creative Commons Attribution 4.0** and **MIT License**
 
-### DP IT Technology Services Summary
+### DP IT Technology Services Summary
 
-DP IT Technology is an independent IT solutions provider offering a comprehensive range of technical services including:
+DP IT Technology is an independent IT solutions provider offering a comprehensive range of technical services including:
 
 - **Support & Maintenance**  
   PC/Mac & Mobile Repair, Help Desk (Remote/On-site), Virus Removal & Optimization, Preventive Maintenance
