@@ -714,7 +714,7 @@ The video demonstration covers:
 2. SSH connection process
 3. Apache configuration walkthrough
 4. SSL certificate verification
-5. Backup script execution
+5. Script execution
 6. Website navigation and features
 
 ## References
