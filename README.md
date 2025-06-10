@@ -7,8 +7,8 @@
 **Project Type:** Cloud-hosted IT services website with secure access  
 **Primary Domain:** https://dptech.online    
 **Replica/Test Domain:** https://dptech2.online  
-**Video link** https://youtu.be/ju6WTU65M8Q  
-or   https://drive.google.com/file/d/11duZoOSc0iHV3zHagozMK2RU6HUgikIo/view?usp=sharing  
+**Video link** https://youtu.be/r90yduQR2N0  
+or   https://drive.google.com/file/d/13aOBEIrBGJ4JVRrxWyIjz2N7Jpx4haES/view?usp=sharing  
 
 ## Table of Contents
 1. [Project Purpose and Scope](#project-purpose-and-scope)
@@ -704,9 +704,9 @@ sudo journalctl -f
 - Regular backup testing and verification
 
 ## Video
-https://drive.google.com/file/d/11duZoOSc0iHV3zHagozMK2RU6HUgikIo/view?usp=sharing  
+https://drive.google.com/file/d/13aOBEIrBGJ4JVRrxWyIjz2N7Jpx4haES/view?usp=sharing  
 or  
-https://youtu.be/ju6WTU65M8Q  
+https://youtu.be/r90yduQR2N0 
 
 ### Video Content Overview
 The video demonstration covers:
